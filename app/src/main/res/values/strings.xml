@@ -39,4 +39,11 @@
     </string>
     <string name="none">none</string>
     <string name="search">Search here</string>
+    <string name="hp">HP</string>
+    <string name="base_stats">Base stats</string>
+    <string name="atk">ATK</string>
+    <string name="def">DEF</string>
+    <string name="speed">SPD</string>
+    <string name="spatk">SpATK</string>
+    <string name="spdef">SpDEF</string>
 </resources>

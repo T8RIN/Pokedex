@@ -12,7 +12,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import ru.tech.pokedex.Functions.containsAt
 import ru.tech.pokedex.data.model.PokedexListEntry
-import ru.tech.pokedex.extensions.Extensions.capitalize
+import ru.tech.pokedex.extensions.Extensions.capitalized
 import ru.tech.pokedex.repository.PokemonRepository
 import ru.tech.pokedex.utils.Resource
 import ru.tech.pokedex.utils.Values.PAGE_SIZE
@@ -59,7 +59,7 @@ class PokemonListViewModel @Inject constructor(
                             entry.url.takeLastWhile { it.isDigit() }
                         }
                         val url = SPRITE_URL.replace("*", number)
-                        PokedexListEntry(entry.name.capitalize(), url, number.toInt())
+                        PokedexListEntry(entry.name.capitalized(), url, number.toInt())
                     }
                     allPokemons = ArrayList(pokedexEntries)
                 }
@@ -83,7 +83,7 @@ class PokemonListViewModel @Inject constructor(
                             entry.url.takeLastWhile { it.isDigit() }
                         }
                         val url = SPRITE_URL.replace("*", number)
-                        PokedexListEntry(entry.name.capitalize(), url, number.toInt())
+                        PokedexListEntry(entry.name.capitalized(), url, number.toInt())
                     }
                     currentPage++
 

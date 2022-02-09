@@ -1,5 +1,24 @@
 package ru.tech.pokedex
 
+import ru.tech.pokedex.utils.Values.TypeBug
+import ru.tech.pokedex.utils.Values.TypeDark
+import ru.tech.pokedex.utils.Values.TypeDragon
+import ru.tech.pokedex.utils.Values.TypeElectric
+import ru.tech.pokedex.utils.Values.TypeFairy
+import ru.tech.pokedex.utils.Values.TypeFighting
+import ru.tech.pokedex.utils.Values.TypeFire
+import ru.tech.pokedex.utils.Values.TypeFlying
+import ru.tech.pokedex.utils.Values.TypeGhost
+import ru.tech.pokedex.utils.Values.TypeGrass
+import ru.tech.pokedex.utils.Values.TypeGround
+import ru.tech.pokedex.utils.Values.TypeIce
+import ru.tech.pokedex.utils.Values.TypeNormal
+import ru.tech.pokedex.utils.Values.TypePoison
+import ru.tech.pokedex.utils.Values.TypePsychic
+import ru.tech.pokedex.utils.Values.TypeRock
+import ru.tech.pokedex.utils.Values.TypeSteel
+import ru.tech.pokedex.utils.Values.TypeWater
+
 object Functions {
 
     fun String.containsAt(subString: String): Int {
@@ -42,6 +61,29 @@ object Functions {
             }
         } else return q
         return q
+    }
+
+    fun String.getColor(): Int {
+        return when (this.lowercase()) {
+            "fire" -> TypeFire
+            "water" -> TypeWater
+            "electric" -> TypeElectric
+            "grass" -> TypeGrass
+            "ice" -> TypeIce
+            "fighting" -> TypeFighting
+            "poison" -> TypePoison
+            "ground" -> TypeGround
+            "flying" -> TypeFlying
+            "psychic" -> TypePsychic
+            "bug" -> TypeBug
+            "rock" -> TypeRock
+            "ghost" -> TypeGhost
+            "dragon" -> TypeDragon
+            "dark" -> TypeDark
+            "steel" -> TypeSteel
+            "fairy" -> TypeFairy
+            else -> TypeNormal
+        }
     }
 
 }

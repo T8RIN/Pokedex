@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <style name="Theme.Pokedex" parent="Base.Theme.Pokedex">
         <item name="android:navigationBarColor">@android:color/transparent</item>

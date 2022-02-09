@@ -89,6 +89,7 @@ dependencies {
     kapt("androidx.hilt:hilt-compiler:1.0.0")
 
     implementation("androidx.palette:palette-ktx:1.0.0")
+    implementation("com.github.skydoves:progressview:1.1.3")
 
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 

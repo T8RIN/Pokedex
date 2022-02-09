@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4" />
+        app:layout_constraintGuide_percent="0.48" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -36,6 +36,7 @@
         app:layout_constraintGuide_percent="0.26" />
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -79,8 +80,384 @@
         android:textSize="30sp"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:elevation="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/pokemonName">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/element"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pokemonName"
+            app:shapeAppearance="@style/shape20dp" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/type"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/pokemonName"
+            app:shapeAppearance="@style/shape20dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:elevation="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/pokemonName">
+
+        <TextView
+            android:id="@+id/elementText"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:elevation="15dp"
+            android:gravity="center"
+            android:padding="5dp" />
+
+        <TextView
+            android:id="@+id/typeText"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:elevation="15dp"
+            android:gravity="center"
+            android:padding="5dp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="48dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="12dp"
+        android:contentDescription="@string/none"
+        android:elevation="15dp"
+        android:src="@drawable/ic_weight_24"
+        app:layout_constraintEnd_toEndOf="@+id/weight"
+        app:layout_constraintStart_toStartOf="@+id/weight"
+        app:layout_constraintTop_toBottomOf="@+id/linear"
+        app:tint="@color/manualBackground" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="48dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="12dp"
+        android:contentDescription="@string/none"
+        android:elevation="15dp"
+        android:src="@drawable/ic_height_24"
+        app:layout_constraintEnd_toEndOf="@+id/height"
+        app:layout_constraintStart_toStartOf="@+id/height"
+        app:layout_constraintTop_toBottomOf="@+id/linear"
+        app:tint="@color/manualBackground" />
+
+    <TextView
+        android:id="@+id/weight"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="30dp"
+        android:elevation="15dp"
+        android:gravity="center"
+        android:textColor="@color/manualBackground"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <TextView
+        android:id="@+id/height"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="40dp"
+        android:elevation="15dp"
+        android:gravity="center"
+        android:textColor="@color/manualBackground"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:elevation="15dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/linear" />
+
+    <TextView
+        android:id="@+id/base_stats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:elevation="15dp"
+        android:gravity="center"
+        android:text="@string/base_stats"
+        android:textColor="@color/manualBackground"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="@+id/pokemonName"
+        app:layout_constraintStart_toStartOf="@+id/pokemonName"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <LinearLayout
+        android:id="@+id/hp_linear"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:elevation="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/pokemonName"
+        app:layout_constraintStart_toStartOf="@+id/pokemonName"
+        app:layout_constraintTop_toBottomOf="@+id/base_stats">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="5dp"
+            android:gravity="start|center"
+            android:text="@string/hp"
+            android:textColor="@color/manualBackground"
+            android:textSize="16sp" />
+
+        <com.skydoves.progressview.ProgressView
+            android:id="@+id/hpProgress"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:progressView_autoAnimate="true"
+            app:progressView_colorBackground="@android:color/darker_gray"
+            app:progressView_colorProgress="#AB0036"
+            app:progressView_labelColorInner="@color/black"
+            app:progressView_labelColorOuter="@color/white"
+            app:progressView_labelSize="15sp"
+            app:progressView_labelSpace="10dp"
+            app:progressView_labelTypeface="bold"
+            app:progressView_max="100"
+            app:progressView_progress="0"
+            app:progressView_radius="20dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/attack_linear"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:elevation="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/pokemonName"
+        app:layout_constraintStart_toStartOf="@+id/pokemonName"
+        app:layout_constraintTop_toBottomOf="@+id/hp_linear">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="5dp"
+            android:gravity="start|center"
+            android:text="@string/atk"
+            android:textColor="@color/manualBackground"
+            android:textSize="16sp" />
+
+        <com.skydoves.progressview.ProgressView
+            android:id="@+id/attackProgress"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:progressView_autoAnimate="true"
+            app:progressView_colorBackground="@android:color/darker_gray"
+            app:progressView_colorProgress="#FFFF00"
+            app:progressView_labelColorInner="@color/black"
+            app:progressView_labelColorOuter="@color/white"
+            app:progressView_labelSize="15sp"
+            app:progressView_labelSpace="10dp"
+            app:progressView_labelTypeface="bold"
+            app:progressView_max="100"
+            app:progressView_progress="0"
+            app:progressView_radius="20dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/def_linear"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:elevation="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/pokemonName"
+        app:layout_constraintStart_toStartOf="@+id/pokemonName"
+        app:layout_constraintTop_toBottomOf="@+id/attack_linear">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="5dp"
+            android:gravity="start|center"
+            android:text="@string/def"
+            android:textColor="@color/manualBackground"
+            android:textSize="16sp" />
+
+        <com.skydoves.progressview.ProgressView
+            android:id="@+id/defProgress"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:progressView_autoAnimate="true"
+            app:progressView_colorBackground="@android:color/darker_gray"
+            app:progressView_colorProgress="@android:color/holo_blue_light"
+            app:progressView_labelColorInner="@color/black"
+            app:progressView_labelColorOuter="@color/white"
+            app:progressView_labelSize="15sp"
+            app:progressView_labelSpace="10dp"
+            app:progressView_labelTypeface="bold"
+            app:progressView_max="100"
+            app:progressView_progress="0"
+            app:progressView_radius="20dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/spattack_linear"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:elevation="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/pokemonName"
+        app:layout_constraintStart_toStartOf="@+id/pokemonName"
+        app:layout_constraintTop_toBottomOf="@+id/def_linear">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="5dp"
+            android:gravity="start|center"
+            android:text="@string/spatk"
+            android:textColor="@color/manualBackground"
+            android:textSize="16sp" />
+
+        <com.skydoves.progressview.ProgressView
+            android:id="@+id/spAtkProgress"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:progressView_autoAnimate="true"
+            app:progressView_colorBackground="@android:color/darker_gray"
+            app:progressView_colorProgress="#AB63FD"
+            app:progressView_labelColorInner="@color/black"
+            app:progressView_labelColorOuter="@color/white"
+            app:progressView_labelSize="15sp"
+            app:progressView_labelSpace="10dp"
+            app:progressView_labelTypeface="bold"
+            app:progressView_max="100"
+            app:progressView_progress="0"
+            app:progressView_radius="20dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/spdef_linear"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:elevation="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/pokemonName"
+        app:layout_constraintStart_toStartOf="@+id/pokemonName"
+        app:layout_constraintTop_toBottomOf="@+id/spattack_linear">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="5dp"
+            android:gravity="start|center"
+            android:text="@string/spdef"
+            android:textColor="@color/manualBackground"
+            android:textSize="16sp" />
+
+        <com.skydoves.progressview.ProgressView
+            android:id="@+id/spDefProgress"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:progressView_autoAnimate="true"
+            app:progressView_colorBackground="@android:color/darker_gray"
+            app:progressView_colorProgress="#3F958F"
+            app:progressView_labelColorInner="@color/black"
+            app:progressView_labelColorOuter="@color/white"
+            app:progressView_labelSize="15sp"
+            app:progressView_labelSpace="10dp"
+            app:progressView_labelTypeface="bold"
+            app:progressView_max="100"
+            app:progressView_progress="0"
+            app:progressView_radius="20dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/spd_linear"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:elevation="15dp"
+        app:layout_constraintBottom_toBottomOf="@id/card"
+        app:layout_constraintEnd_toEndOf="@+id/pokemonName"
+        app:layout_constraintStart_toStartOf="@+id/pokemonName"
+        app:layout_constraintTop_toBottomOf="@+id/spdef_linear"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="5dp"
+            android:gravity="start|center"
+            android:text="@string/speed"
+            android:textColor="@color/manualBackground"
+            android:textSize="16sp" />
+
+        <com.skydoves.progressview.ProgressView
+            android:id="@+id/speedProgress"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:progressView_autoAnimate="true"
+            app:progressView_colorBackground="@android:color/darker_gray"
+            app:progressView_colorProgress="#23B70A"
+            app:progressView_labelColorInner="@color/black"
+            app:progressView_labelColorOuter="@color/white"
+            app:progressView_labelSize="15sp"
+            app:progressView_labelSpace="10dp"
+            app:progressView_labelTypeface="bold"
+            app:progressView_max="100"
+            app:progressView_progress="0"
+            app:progressView_radius="20dp" />
+
+    </LinearLayout>
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="15dp"
