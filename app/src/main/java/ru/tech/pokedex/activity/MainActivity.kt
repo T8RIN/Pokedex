@@ -24,9 +24,16 @@ class MainActivity : AppCompatActivity() {
         DynamicColors.applyToActivitiesIfAvailable(application)
 
         if (savedInstanceState == null) {
+            val tag = "pokemon_list"
             supportFragmentManager.beginTransaction()
-                .add(R.id.container, PokemonListFragment(), "pokemon_list").commit()
+                .add(R.id.container, PokemonListFragment(), tag)
+                .commit()
         }
+    }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount > 0) supportFragmentManager.popBackStackImmediate()
+        else super.onBackPressed()
     }
 
 }

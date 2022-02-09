@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="ru.tech.pokedex">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name="ru.tech.pokedex.application.PokedexComposeApplication"
         android:allowBackup="true"

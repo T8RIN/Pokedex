@@ -30,7 +30,7 @@
         android:paddingTop="70dp"
         android:paddingEnd="5dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
+        app:spanCount="4"
         tools:listitem="@layout/pokemon_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

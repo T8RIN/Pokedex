@@ -4,11 +4,13 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.palette.graphics.Palette
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import ru.tech.pokedex.Functions.containsAt
 import ru.tech.pokedex.data.model.PokedexListEntry
 import ru.tech.pokedex.extensions.Extensions.capitalize
 import ru.tech.pokedex.repository.PokemonRepository
@@ -24,10 +26,49 @@ class PokemonListViewModel @Inject constructor(
 
     private var currentPage = 0
 
-    var pokemonList: ArrayList<PokedexListEntry> = ArrayList()
+    var cachedList: ArrayList<PokedexListEntry> = ArrayList()
+    var isFinding = false
+
+    val pokemonList: MutableLiveData<ArrayList<PokedexListEntry>> by lazy {
+        MutableLiveData<ArrayList<PokedexListEntry>>()
+    }
+
+    val searchList: MutableLiveData<ArrayList<PokedexListEntry>> by lazy {
+        MutableLiveData<ArrayList<PokedexListEntry>>()
+    }
+
+    private var allPokemons: ArrayList<PokedexListEntry> = ArrayList()
+
     var loadError = ""
     var isLoading = false
     var endReached = false
+
+    init {
+        loadPokemonList()
+        initAllPokemons()
+    }
+
+    private fun initAllPokemons() {
+        viewModelScope.launch {
+            when (val result = repository.getPokemonList(1118, 0)) {
+                is Resource.Success -> {
+                    val pokedexEntries = result.data!!.results.mapIndexed { _, entry ->
+                        val number = if (entry.url.endsWith("/")) {
+                            entry.url.dropLast(1).takeLastWhile { it.isDigit() }
+                        } else {
+                            entry.url.takeLastWhile { it.isDigit() }
+                        }
+                        val url = SPRITE_URL.replace("*", number)
+                        PokedexListEntry(entry.name.capitalize(), url, number.toInt())
+                    }
+                    allPokemons = ArrayList(pokedexEntries)
+                }
+                is Resource.Error -> {
+                    loadError = result.message!!
+                }
+            }
+        }
+    }
 
     fun loadPokemonList() {
         viewModelScope.launch {
@@ -48,13 +89,39 @@ class PokemonListViewModel @Inject constructor(
 
                     loadError = ""
                     isLoading = false
-                    pokemonList.addAll(pokedexEntries)
+                    if (pokemonList.value == null) {
+                        pokemonList.value = ArrayList(pokedexEntries)
+                    } else {
+                        pokemonList.value = ArrayList(pokemonList.value!! + pokedexEntries)
+                    }
+
                 }
                 is Resource.Error -> {
                     loadError = result.message!!
                     isLoading = false
                 }
             }
+        }
+    }
+
+    fun searchForPokemon(query: String) {
+        viewModelScope.launch {
+            isLoading = true
+            val tempArr: ArrayList<PokedexListEntry> = ArrayList()
+            val pairList: ArrayList<Pair<PokedexListEntry, Int>> = ArrayList()
+
+            allPokemons.forEach {
+                val index = it.pokemonName.lowercase().containsAt(query.lowercase())
+                if (index != 101) {
+                    pairList.add(Pair(it, index))
+                }
+            }
+
+            pairList.sortBy { it.second }
+            pairList.forEach { tempArr.add(it.first) }
+
+            searchList.value = tempArr
+            isLoading = false
         }
     }
 
