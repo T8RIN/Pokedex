@@ -40,15 +40,15 @@ class PokemonListAdapter(
         val entry = pokemonList[position]
         holder.number.text = entry.number.toString()
         holder.pokemonName.text = entry.pokemonName
-        holder.itemView.setOnClickListener {
-            fragment.openDetails(entry.pokemonName)
-        }
         holder.pokemonImage.load(entry.imageUrl) {
             memoryCachePolicy(CachePolicy.ENABLED)
             listener { _, _ ->
                 holder.loading.visibility = GONE
                 viewModel.getDominantColor(holder.pokemonImage.drawable) { dominantColor ->
                     holder.card.setCardBackgroundColor(dominantColor)
+                    holder.itemView.setOnClickListener {
+                        fragment.openDetails(entry.pokemonName, dominantColor)
+                    }
                 }
             }
         }

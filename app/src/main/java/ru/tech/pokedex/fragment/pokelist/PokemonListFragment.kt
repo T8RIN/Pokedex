@@ -21,6 +21,7 @@ import ru.tech.pokedex.R
 import ru.tech.pokedex.activity.MainActivity
 import ru.tech.pokedex.adapter.PokemonListAdapter
 import ru.tech.pokedex.databinding.PokemonListFragmentBinding
+import ru.tech.pokedex.fragment.details.PokemonDetailsFragment
 
 @AndroidEntryPoint
 class PokemonListFragment : Fragment() {
@@ -102,9 +103,9 @@ class PokemonListFragment : Fragment() {
         }
     }
 
-    fun openDetails(pokemonName: String) {
+    fun openDetails(pokemonName: String, dominantColor: Int) {
         val fragment = PokemonDetailsFragment()
-        fragment.arguments = bundleOf(Pair("name", pokemonName))
+        fragment.arguments = bundleOf(Pair("name", pokemonName), Pair("color", dominantColor))
 
         val tag = "pokemon_info"
         (requireActivity() as MainActivity).supportFragmentManager.beginTransaction()
