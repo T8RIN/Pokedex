@@ -1,13 +1,15 @@
-package ru.tech.pokedex
+package ru.tech.pokedex.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import com.google.android.material.color.DynamicColors
+import dagger.hilt.android.AndroidEntryPoint
+import ru.tech.pokedex.R
 import ru.tech.pokedex.databinding.ActivityMainBinding
 import ru.tech.pokedex.fragment.pokelist.PokemonListFragment
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

@@ -13,11 +13,11 @@
         android:background="@drawable/rounded_corners"
         android:elevation="6dp"
         android:hint="@string/search"
-        android:padding="10dp"
         android:paddingStart="16dp"
         android:paddingTop="10dp"
         android:paddingEnd="16dp"
         android:paddingBottom="10dp"
+        android:singleLine="true"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
