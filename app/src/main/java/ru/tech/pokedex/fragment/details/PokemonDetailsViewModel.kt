@@ -16,7 +16,11 @@ class PokemonDetailsViewModel @Inject constructor(
 ) : ViewModel() {
 
     var isLoading = false
-    var loadError = ""
+
+    val loadError: MutableLiveData<String> by lazy {
+        MutableLiveData<String>("")
+    }
+
     val pokemonInfo: MutableLiveData<Pokemon> by lazy {
         MutableLiveData<Pokemon>()
     }
@@ -27,11 +31,11 @@ class PokemonDetailsViewModel @Inject constructor(
                 is Resource.Success -> {
                     pokemonInfo.value = result.data!!
 
-                    loadError = ""
+                    loadError.value = ""
                     isLoading = false
                 }
                 is Resource.Error -> {
-                    loadError = result.message!!
+                    loadError.value = result.message!!
                     isLoading = false
                 }
             }

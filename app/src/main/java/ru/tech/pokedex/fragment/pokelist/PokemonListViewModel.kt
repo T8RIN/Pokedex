@@ -10,9 +10,9 @@ import androidx.lifecycle.viewModelScope
 import androidx.palette.graphics.Palette
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import ru.tech.pokedex.functions.Functions.containsAt
 import ru.tech.pokedex.data.model.PokedexListEntry
 import ru.tech.pokedex.extensions.Extensions.capitalized
+import ru.tech.pokedex.functions.Functions.containsAt
 import ru.tech.pokedex.repository.PokemonRepository
 import ru.tech.pokedex.utils.Resource
 import ru.tech.pokedex.utils.Values.PAGE_SIZE
@@ -26,7 +26,6 @@ class PokemonListViewModel @Inject constructor(
 
     private var currentPage = 0
 
-    var cachedList: ArrayList<PokedexListEntry> = ArrayList()
     var isFinding = false
 
     val pokemonList: MutableLiveData<ArrayList<PokedexListEntry>> by lazy {
@@ -39,7 +38,10 @@ class PokemonListViewModel @Inject constructor(
 
     private var allPokemons: ArrayList<PokedexListEntry> = ArrayList()
 
-    var loadError = ""
+    val loadError: MutableLiveData<String> by lazy {
+        MutableLiveData<String>("")
+    }
+
     var isLoading = false
     var endReached = false
 
@@ -64,7 +66,7 @@ class PokemonListViewModel @Inject constructor(
                     allPokemons = ArrayList(pokedexEntries)
                 }
                 is Resource.Error -> {
-                    loadError = result.message!!
+                    loadError.value = result.message!!
                 }
             }
         }
@@ -87,7 +89,7 @@ class PokemonListViewModel @Inject constructor(
                     }
                     currentPage++
 
-                    loadError = ""
+                    loadError.value = ""
                     isLoading = false
                     if (pokemonList.value == null) {
                         pokemonList.value = ArrayList(pokedexEntries)
@@ -97,7 +99,7 @@ class PokemonListViewModel @Inject constructor(
 
                 }
                 is Resource.Error -> {
-                    loadError = result.message!!
+                    loadError.value = result.message!!
                     isLoading = false
                 }
             }

@@ -6,15 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import coil.load
 import coil.size.Scale
 import coil.transform.CircleCropTransformation
 import dagger.hilt.android.AndroidEntryPoint
-import ru.tech.pokedex.functions.Functions.getColor
 import ru.tech.pokedex.databinding.PokemonDetailsFragmentBinding
 import ru.tech.pokedex.extensions.Extensions.capitalized
+import ru.tech.pokedex.functions.Functions.getColor
 
 @AndroidEntryPoint
 class PokemonDetailsFragment : Fragment() {
@@ -114,6 +115,10 @@ class PokemonDetailsFragment : Fragment() {
 
         binding.goBack.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStackImmediate()
+        }
+
+        viewModel.loadError.observe(viewLifecycleOwner) {
+            if (it != "") Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
         }
 
     }

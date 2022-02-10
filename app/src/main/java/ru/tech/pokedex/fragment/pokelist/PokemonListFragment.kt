@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -56,15 +58,20 @@ class PokemonListFragment : Fragment() {
 
         viewModel.pokemonList.observe(viewLifecycleOwner) {
             adapter.addData(it)
+            binding.loading.visibility = GONE
         }
 
         viewModel.searchList.observe(viewLifecycleOwner) {
             if (!viewModel.isFinding) {
-                adapter.pokemonList = viewModel.pokemonList.value!!
+                viewModel.pokemonList.value?.let { `val` -> adapter.pokemonList = `val` }
             } else {
                 adapter.pokemonList = it
             }
             adapter.notifyDataSetChanged()
+        }
+
+        viewModel.loadError.observe(viewLifecycleOwner) {
+            if (it != "") Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
         }
 
         binding.pokemonRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
