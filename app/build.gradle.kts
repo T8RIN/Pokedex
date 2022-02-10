@@ -9,7 +9,7 @@ android {
     compileSdk = 31
 
     defaultConfig {
-        applicationId = "ru.tech.pokedexcompose"
+        applicationId = "ru.tech.pokedex"
         minSdk = 21
         targetSdk = 31
         versionCode = 1
@@ -61,9 +61,6 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:okhttp:4.9.2")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.2")
-
-    // Timber
-    implementation("com.jakewharton.timber:timber:4.7.1")
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
