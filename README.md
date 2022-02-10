@@ -48,9 +48,6 @@ Go to the [Releases](https://github.com/t8rin/Pokedex/releases) to download the 
 
 - [ProgressView](https://github.com/skydoves/progressview) - A polished and flexible ProgressView, fully customizable with animations.
 
-## MAD Score
-<img src="blob/preview/mad.png"/>
-
 # License
 ```xml
 Designed and developed by 2021 T8RIN
