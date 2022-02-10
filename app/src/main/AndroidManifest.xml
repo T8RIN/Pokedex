@@ -19,7 +19,7 @@
         <activity
             android:name="ru.tech.pokedex.activity.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.Pokedex">
+            android:theme="@style/Theme.Pokedex.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

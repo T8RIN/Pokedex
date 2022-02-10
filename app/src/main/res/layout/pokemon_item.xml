@@ -35,7 +35,7 @@
             android:contentDescription="@string/none"
             android:padding="20dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_pokemon_logo"
+            android:src="@drawable/ic_pokeball_144"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

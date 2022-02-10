@@ -6,4 +6,8 @@
     </style>
 
     <style name="Theme.Pokedex" parent="Base.Theme.Pokedex" />
+
+    <style name="Theme.Pokedex.Launcher">
+        <item name="android:windowBackground">@drawable/launch_screen</item>
+    </style>
 </resources>
