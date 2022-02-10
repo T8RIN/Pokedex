@@ -10,7 +10,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.palette.graphics.Palette
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import ru.tech.pokedex.Functions.containsAt
+import ru.tech.pokedex.functions.Functions.containsAt
 import ru.tech.pokedex.data.model.PokedexListEntry
 import ru.tech.pokedex.extensions.Extensions.capitalized
 import ru.tech.pokedex.repository.PokemonRepository

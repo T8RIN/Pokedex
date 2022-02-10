@@ -1,4 +1,4 @@
-package ru.tech.pokedex
+package ru.tech.pokedex.functions
 
 import ru.tech.pokedex.utils.Values.TypeBug
 import ru.tech.pokedex.utils.Values.TypeDark

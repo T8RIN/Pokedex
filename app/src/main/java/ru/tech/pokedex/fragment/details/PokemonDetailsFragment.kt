@@ -12,7 +12,7 @@ import coil.load
 import coil.size.Scale
 import coil.transform.CircleCropTransformation
 import dagger.hilt.android.AndroidEntryPoint
-import ru.tech.pokedex.Functions.getColor
+import ru.tech.pokedex.functions.Functions.getColor
 import ru.tech.pokedex.databinding.PokemonDetailsFragmentBinding
 import ru.tech.pokedex.extensions.Extensions.capitalized
 
