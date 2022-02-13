@@ -131,7 +131,7 @@
             android:elevation="15dp"
             android:gravity="center"
             android:padding="5dp"
-            android:textColor="@color/manualBackgroundRev"
+            android:textColor="@color/white"
             android:textSize="14sp" />
 
         <TextView
@@ -144,7 +144,7 @@
             android:elevation="15dp"
             android:gravity="center"
             android:padding="5dp"
-            android:textColor="@color/manualBackgroundRev"
+            android:textColor="@color/white"
             android:textSize="14sp" />
 
     </LinearLayout>
