@@ -29,13 +29,13 @@ class PokemonDetailsViewModel @Inject constructor(
         viewModelScope.launch {
             when (val result = repository.getPokemonInfo(pokemonName.lowercase())) {
                 is Resource.Success -> {
-                    pokemonInfo.value = result.data!!
+                    if (result.data != null) pokemonInfo.value = result.data
 
                     loadError.value = ""
                     isLoading = false
                 }
                 is Resource.Error -> {
-                    loadError.value = result.message!!
+                    loadError.value = result.message.toString()
                     isLoading = false
                 }
             }

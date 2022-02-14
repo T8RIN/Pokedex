@@ -54,19 +54,21 @@ class PokemonListViewModel @Inject constructor(
         viewModelScope.launch {
             when (val result = repository.getPokemonList(1118, 0)) {
                 is Resource.Success -> {
-                    val pokedexEntries = result.data!!.results.mapIndexed { _, entry ->
-                        val number = if (entry.url.endsWith("/")) {
-                            entry.url.dropLast(1).takeLastWhile { it.isDigit() }
-                        } else {
-                            entry.url.takeLastWhile { it.isDigit() }
+                    if (result.data != null) {
+                        val pokedexEntries = result.data.results.mapIndexed { _, entry ->
+                            val number = if (entry.url.endsWith("/")) {
+                                entry.url.dropLast(1).takeLastWhile { it.isDigit() }
+                            } else {
+                                entry.url.takeLastWhile { it.isDigit() }
+                            }
+                            val url = SPRITE_URL.replace("*", number)
+                            PokedexListEntry(entry.name.capitalized(), url, number.toInt())
                         }
-                        val url = SPRITE_URL.replace("*", number)
-                        PokedexListEntry(entry.name.capitalized(), url, number.toInt())
+                        allPokemons = ArrayList(pokedexEntries)
                     }
-                    allPokemons = ArrayList(pokedexEntries)
                 }
                 is Resource.Error -> {
-                    loadError.value = result.message!!
+                    loadError.value = result.message.toString()
                 }
             }
         }
@@ -77,29 +79,30 @@ class PokemonListViewModel @Inject constructor(
             isLoading = true
             when (val result = repository.getPokemonList(PAGE_SIZE, currentPage * PAGE_SIZE)) {
                 is Resource.Success -> {
-                    endReached = currentPage * PAGE_SIZE >= result.data!!.count
-                    val pokedexEntries = result.data.results.mapIndexed { _, entry ->
-                        val number = if (entry.url.endsWith("/")) {
-                            entry.url.dropLast(1).takeLastWhile { it.isDigit() }
-                        } else {
-                            entry.url.takeLastWhile { it.isDigit() }
+                    if (result.data != null) {
+                        endReached = currentPage * PAGE_SIZE >= result.data.count
+                        val pokedexEntries = result.data.results.mapIndexed { _, entry ->
+                            val number = if (entry.url.endsWith("/")) {
+                                entry.url.dropLast(1).takeLastWhile { it.isDigit() }
+                            } else {
+                                entry.url.takeLastWhile { it.isDigit() }
+                            }
+                            val url = SPRITE_URL.replace("*", number)
+                            PokedexListEntry(entry.name.capitalized(), url, number.toInt())
                         }
-                        val url = SPRITE_URL.replace("*", number)
-                        PokedexListEntry(entry.name.capitalized(), url, number.toInt())
+                        currentPage++
+                        if (pokemonList.value == null) {
+                            pokemonList.value = ArrayList(pokedexEntries)
+                        } else {
+                            val `val` = pokemonList.value
+                            if (`val` != null) pokemonList.value = ArrayList(`val` + pokedexEntries)
+                        }
                     }
-                    currentPage++
-
                     loadError.value = ""
                     isLoading = false
-                    if (pokemonList.value == null) {
-                        pokemonList.value = ArrayList(pokedexEntries)
-                    } else {
-                        pokemonList.value = ArrayList(pokemonList.value!! + pokedexEntries)
-                    }
-
                 }
                 is Resource.Error -> {
-                    loadError.value = result.message!!
+                    loadError.value = result.message.toString()
                     isLoading = false
                 }
             }

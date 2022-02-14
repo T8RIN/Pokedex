@@ -79,7 +79,7 @@ class PokemonListFragment : Fragment() {
                 super.onScrolled(recyclerView, dx, dy)
                 if (!viewModel.isLoading && !viewModel.endReached) {
                     val curPos = layoutManager.findLastCompletelyVisibleItemPosition()
-                    if (curPos == viewModel.pokemonList.value!!.size - 1) {
+                    if (curPos == (viewModel.pokemonList.value?.size ?: 0) - 1) {
                         viewModel.loadPokemonList()
                     }
                 }

@@ -44,7 +44,7 @@ class PokemonDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val color = requireArguments().getInt("color")
-        val pokemonNameStr = requireArguments().getString("name", "")!!
+        val pokemonNameStr = requireArguments().getString("name", "")
 
         viewModel.pokemonInfo.observe(viewLifecycleOwner) { pokemon ->
 
